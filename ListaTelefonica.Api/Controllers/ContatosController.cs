@@ -1,63 +1,56 @@
-using ListaTelefonica.Api.Models;
-using ListaTelefonica.Api.Services;
+using ListaTelefonica.Api.Application.Commands;
+using ListaTelefonica.Api.Application.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ListaTelefonica.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("contatos")]
     public class ContatosController : ControllerBase
     {
-        private readonly ContatoService _service;
+        private readonly IMediator _mediator;
 
-        public ContatosController(ContatoService service)
+        public ContatosController(IMediator mediator)
         {
-            _service = service;
-        }
-
-        [HttpGet]
-        public ActionResult<List<Contato>> Get() => _service.Get();
-
-        [HttpGet("{id:length(24)}", Name = "GetContato")]
-        public ActionResult<Contato> Get(string id)
-        {
-            var contato = _service.Get(id);
-
-            if (contato == null)
-                return NotFound(new { message = "Contato não encontrado." });
-
-            return contato;
+            _mediator = mediator;
         }
 
         [HttpPost]
-        public ActionResult<Contato> Create(Contato contato)
+        public async Task<IActionResult> Create(CreateContatoCommand command)
         {
-            _service.Create(contato);
-            return CreatedAtRoute("GetContato", new { id = contato.Id }, contato);
+            var contato = await _mediator.Send(command);
+            return Ok(contato);
         }
 
-        [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Contato contato)
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
-            var existing = _service.Get(id);
-
-            if (existing == null)
-                return NotFound(new { message = "Contato não encontrado." });
-
-            _service.Update(id, contato);
-            return NoContent();
+            var contatos = await _mediator.Send(new GetAllContatosQuery());
+            return Ok(contatos);
         }
 
-        [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id)
         {
-            var contato = _service.Get(id);
+            var contato = await _mediator.Send(new GetContatoByIdQuery(id));
+            if (contato == null) return NotFound();
+            return Ok(contato);
+        }
 
-            if (contato == null)
-                return NotFound(new { message = "Contato não encontrado." });
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id, UpdateContatoCommand command)
+        {
+            command.Id = id;
+            var contato = await _mediator.Send(command);
+            return Ok(contato);
+        }
 
-            _service.Delete(id);
-            return Ok(new { message = "Contato removido com sucesso." });
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var result = await _mediator.Send(new DeleteContatoCommand(id));
+            return result ? NoContent() : NotFound();
         }
     }
 }

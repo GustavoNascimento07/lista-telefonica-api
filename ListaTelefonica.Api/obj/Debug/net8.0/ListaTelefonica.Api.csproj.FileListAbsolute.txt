@@ -8,6 +8,8 @@ C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Ap
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\bin\Debug\net8.0\AWSSDK.Core.dll
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\bin\Debug\net8.0\DnsClient.dll
+C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\bin\Debug\net8.0\MediatR.dll
+C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\bin\Debug\net8.0\MediatR.Contracts.dll
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\bin\Debug\net8.0\MongoDB.Bson.dll
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\bin\Debug\net8.0\MongoDB.Driver.dll
@@ -29,6 +31,7 @@ C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Ap
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\obj\Debug\net8.0\ListaTelefonica.Api.csproj.CoreCompileInputs.cache
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\obj\Debug\net8.0\ListaTelefonica.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\obj\Debug\net8.0\ListaTelefonica.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\obj\Debug\net8.0\ListaTelefonica.Api.sourcelink.json
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Gustavo Nascimento\OneDrive\Documentos\teste.tecnico\ListaTelefonica.Api\obj\Debug\net8.0\staticwebassets\msbuild.ListaTelefonica.Api.Microsoft.AspNetCore.StaticWebAssets.props

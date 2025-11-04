@@ -1,4 +1,4 @@
-using ListaTelefonica.Api.Models;
+using ListaTelefonica.Api.Domain;
 using MongoDB.Driver;
 
 namespace ListaTelefonica.Api.Services
@@ -9,19 +9,50 @@ namespace ListaTelefonica.Api.Services
 
         public ContatoService(IConfiguration config)
         {
+            ////////////////////////////
+            // Cria o cliente MongoDB //
+            ////////////////////////////
             var client = new MongoClient(config["MongoDb:ConnectionString"]);
+
+            //////////////////////////
+            // Pega o banco de dados//
+            //////////////////////////
             var database = client.GetDatabase(config["MongoDb:Database"]);
+
+            ////////////////////////////////////////
+            // Pega a coleção (tabela de contatos)//
+            ////////////////////////////////////////
             _contatos = database.GetCollection<Contato>(config["MongoDb:Collection"]);
         }
 
-        public List<Contato> Get() => _contatos.Find(c => true).ToList();
+        ///////////////////////////////////
+        // 🔹 Retorna todos os contatos ///
+        ///////////////////////////////////
+        public async Task<List<Contato>> GetAsync() =>
+            await _contatos.Find(c => true).ToListAsync();
 
-        public Contato Get(string id) => _contatos.Find(c => c.Id == id).FirstOrDefault();
+        ///////////////////////////////////
+        // 🔹 Retorna um contato pelo ID ///
+        ///////////////////////////////////
+        public async Task<Contato?> GetByIdAsync(string id) =>
+            await _contatos.Find(c => c.Id == id).FirstOrDefaultAsync();
 
-        public void Create(Contato contato) => _contatos.InsertOne(contato);
+        /////////////////////////////
+        // 🔹 Cria um novo contato //
+        /////////////////////////////
+        public async Task CreateAsync(Contato contato) =>
+            await _contatos.InsertOneAsync(contato);
 
-        public void Update(string id, Contato contato) => _contatos.ReplaceOne(c => c.Id == id, contato);
+        ///////////////////////////////////////
+        // 🔹 Atualiza um contato existente ///
+        ///////////////////////////////////////
+        public async Task UpdateAsync(string id, Contato contato) =>
+            await _contatos.ReplaceOneAsync(c => c.Id == id, contato);
 
-        public void Delete(string id) => _contatos.DeleteOne(c => c.Id == id);
+        ///////////////////////////////////////
+        // 🔹 Deleta um contato pelo ID ///////
+        ///////////////////////////////////////
+        public async Task DeleteAsync(string id) =>
+            await _contatos.DeleteOneAsync(c => c.Id == id);
     }
 }
